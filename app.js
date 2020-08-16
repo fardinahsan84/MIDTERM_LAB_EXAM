@@ -3,7 +3,7 @@ var ejs 			=       require('ejs');
 var bodyParser =      require('body-parser');
 var exSession =       require('express-session');
 var expressValidator= require('express-validator');
-var path					=			 require('path');
+var path					=	  require('path');
 
 var login =           require('./controller/login');
 var logout=           require('./controller/logout');
@@ -30,4 +30,4 @@ app.use('/employee',employee);
 
 app.listen(58811,function(){
   console.log('express http server started at ....58811');
-})
+});

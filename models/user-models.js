@@ -61,8 +61,8 @@ module.exports ={
 		});
 	},
 
-  update: function(user,callback){
-    var sql = "update users set username='"+user.username+"', password='"+user.password+"', phone='"+user.phone+"'  where id='"+user.id+"'";
+  update: function(user,id,callback){
+    var sql = "update users set username='"+user.username+"', password='"+user.password+"', phone='"+user.phone+"'  where id='"+id+"'";
     db.execute(sql, function(status){
       if(status){
         callback(true);

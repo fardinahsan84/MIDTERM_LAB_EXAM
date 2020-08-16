@@ -3,7 +3,7 @@ var router = express.Router();
 var db 		= require.main.require('./models/db');
 var userModel = require.main.require('./models/user-models');
 const { check, validationResult } = require('express-validator');
-;
+const { matchedData, sanitizeBody } = require('express-validator/filter');
 
 router.get('/',function(req,res){
   if(req.session.username== null){
@@ -116,19 +116,25 @@ router.get('/update/:id',[
 
 router.post('/update/:id',[
                 check('username','* username is required').notEmpty(),
-                check('password','* Password is required').notEmpty(),
-                check('phone','* Phone is required').notEmpty()
-
+                check('password','* Password is required')
+                      .notEmpty()
+                      .isLength({min:8})
+                      .withMessage('Password must be at least 8 char long'),
+                check('phone','* Phone number is required')
+                      .notEmpty()
+                      .isLength({min:11, max:11})
+                      .withMessage('phone number must be exactly 11 char long')
                 ] ,
                 function(req,res){
-                  var user = {
+                  /*var user = {
                     username: req.body.username,
                     password: req.body.password,
                     phone: req.body.phone,
                     id: req.params.id
-                  }
+                  }*/
                     var errors = validationResult(req);
-                      if (!errors.isEmpty()) {
+                      if (!errors.isEmpty()){
+
                       			console.log(errors.mapped());
                             userModel.getById(req.params.id, function(result){
                               res.render('admin/update',{user : result,error:errors.mapped()});
@@ -136,7 +142,10 @@ router.post('/update/:id',[
                   		}
                   		else{
 
-                        	userModel.update(user, function(status){
+                        const users= matchedData(req);
+                        console.log(users);
+
+                        	userModel.update(users,req.params.id, function(status){
                         		if(status){
                         			res.redirect('/admin/AllEmployeeList');
 
