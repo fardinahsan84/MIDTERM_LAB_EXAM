@@ -98,8 +98,8 @@ router.get('/delete/:id',function(req,res){
     res.redirect('/logout');
   }
   else{
-    userModel.getById(req.params.id, function(result){
-  		res.render('admin/delete',{user : result});
+    userModel.getByIdProduct(req.params.id, function(result){
+  		res.render('employee/delete',{user : result});
   	});
   }
 });
@@ -107,16 +107,16 @@ router.get('/delete/:id',function(req,res){
 router.post('/delete/:id',function(req,res){
 
         if(req.body.choice=="Yes"){
-          userModel.delete(req.body.id, function(status){
+          userModel.deleteProduct(req.body.id, function(status){
             if(status){
-              res.redirect('/admin/AllEmployeeList');
+              res.redirect('/employee/allProduct');
             }else{
-              res.redirect('/admin/delete'+req.body.id);
+              res.redirect('/employee/delete'+req.body.id);
             }
           });
         }
         else if(req.body.choice=="No"){
-          res.redirect('/admin/AllEmployeeList');
+          res.redirect('/employee/allProduct');
         }
 });
 

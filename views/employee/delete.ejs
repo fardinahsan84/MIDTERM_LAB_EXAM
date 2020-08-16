@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Product</title>
+</head>
+<body>
+    <form method="post">
+      <center>
+        <fieldset>
+            <legend>Delete product</legend>
+            <table>
+              <tr>
+                <tr>
+                  <td>Product ID </td>
+                  <td>:<%= user.id %></td>
+                </tr>
+                <tr>
+                  <td>Product name </td>
+                  <td>:<%= user.name %></td>
+                </tr>
+                <tr>
+                  <td>Product Quantity </td>
+                  <td>:<%= user.quantity %></td>
+                </tr>
+                <tr>
+                  <td>Product price </td>
+                  <td>:<%= user.price %></td>
+                </tr>
+                <tr>
+                      <td><h3>Are you sure you want to delete this product?</h3></td>
+                </tr>
+              <tr>
+              <td></td>
+                <td><input type="submit" name="choice" value="No">
+                <input type="submit" name="choice" value="Yes"></td>
+              </tr>
+              <tr>
+                    <td><input type="hidden" name="id" value="<%= user.id %>"></td>
+              </tr>
+            </table>
+        </fieldset>
+        <table>
+          <tr>
+            <td><a href="/employee/allProduct">Back</a></td><td>|</td>
+                 <td><a href="/logout">Logout</a></td>
+          </tr>
+        </table>
+      </center>
+    </form>
+</body>

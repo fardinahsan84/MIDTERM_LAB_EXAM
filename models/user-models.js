@@ -143,4 +143,15 @@ module.exports ={
     });
   },
 
+  deleteProduct: function(id, callback){
+    var sql = "delete from products where id="+id;
+    db.execute(sql, function(status){
+      if(status){
+        callback(true);
+      }else{
+        callback(false);
+      }
+    });
+  },
+
 }
