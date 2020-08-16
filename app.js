@@ -18,6 +18,7 @@ app.set('views', __dirname + '/views');
 //middleware
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(exSession({secret: 'my secret value', saveUnitialized: true,resave: false}));
+//var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use('/login',login);
 app.use('/logout',logout);

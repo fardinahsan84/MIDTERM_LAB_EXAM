@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db 		= require.main.require('./models/db');
 var userModel = require.main.require('./models/user-models');
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
+;
 
 router.get('/',function(req,res){
   if(req.session.username== null){
@@ -91,31 +92,59 @@ router.post('/AddEmployee',function(req,res){
 
 //update
 
-router.get('/update/:id', function(req, res){
+router.get('/update/:id',[
+                check('username','*username is required').isEmpty(),
+                check('password','*Password is required').isEmpty(),
+                check('phone','* Phone is required').isEmpty()
+                ] ,
+                function(req,res){
+                    var errors = validationResult(req);
 
-	userModel.getById(req.params.id, function(result){
-		res.render('admin/update',{user : result});
-	});
+                    if (!errors.isEmpty()) {
+                          //console.log(errors.mapped());
+                          userModel.getById(req.params.id, function(result){
+                            res.render('admin/update',{user : result,error:errors.mapped()});
+                          });
+                    }
+                    else{
+                      //console.log(errors.mapped());
+                    	userModel.getById(req.params.id, function(result){
+                    		res.render('admin/update',{user : result,error:errors.mapped()});
+                    	});
+                    }
 });
 
-router.post('/update/:id', function(req, res){
+router.post('/update/:id',[
+                check('username','* username is required').notEmpty(),
+                check('password','* Password is required').notEmpty(),
+                check('phone','* Phone is required').notEmpty()
 
-	var user = {
-    username: req.body.username,
-		password: req.body.password,
-    phone: req.body.phone,
-    address:req.body.address,
-		id: req.params.id
-	};
+                ] ,
+                function(req,res){
+                  var user = {
+                    username: req.body.username,
+                    password: req.body.password,
+                    phone: req.body.phone,
+                    id: req.params.id
+                  }
+                    var errors = validationResult(req);
+                      if (!errors.isEmpty()) {
+                      			console.log(errors.mapped());
+                            userModel.getById(req.params.id, function(result){
+                              res.render('admin/update',{user : result,error:errors.mapped()});
+                            });
+                  		}
+                  		else{
 
-	userModel.update(user, function(status){
-		if(status){
-			res.redirect('/admin/AllEmployeeList');
+                        	userModel.update(user, function(status){
+                        		if(status){
+                        			res.redirect('/admin/AllEmployeeList');
 
-		}else{
-			res.redirect('/admin/update/'+req.params.id);
-		}
-	});
+                        		}else{
+                        			res.redirect('/admin/update/'+req.params.id);
+                        		}
+                        	});
+                    }
 });
 
 //DELETE

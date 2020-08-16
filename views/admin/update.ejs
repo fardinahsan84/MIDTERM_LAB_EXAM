@@ -25,15 +25,24 @@
           </tr>
           <tr>
             <td>Employee Username</td>
-            <td><input type="text" value="<%= user.username %>" required="required" name="username"  id="phone"></td>
+            <td><input type="text" value="<%= user.username %>" name="username" ></td>
+            <% if (error.username) { %>
+            <td><span style="color: red;"><%= error.username.msg %></span><td>
+            <% } %>
           </tr>
           <tr>
             <td>Employee Password</td>
-            <td><input type="password" value="<%= user.password %>" required="required" name="password"  id="password"></td>
+            <td><input type="password" value="<%= user.password %>" name="password" ></td>
+            <% if (error.password) { %>
+            <td><span style="color: red;"><%= error.password.msg %></span><td>
+            <% } %>
           </tr>
           <tr>
             <td>Employee Phone</td>
-            <td><input type="text" value="<%= user.phone %>" required="required" name="phone"  id="phone"></td>
+            <td><input type="text" value="<%= user.phone %>"  name="phone"></td>
+            <% if (error.phone) { %>
+            <td><span style="color: red;"><%= error.phone.msg %></span><td>
+            <% } %>
           </tr>
           <tr>
             <td></td>
