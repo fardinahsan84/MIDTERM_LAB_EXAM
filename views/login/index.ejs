@@ -79,25 +79,21 @@
     </style>
 </head>
 <body>
-  <% if (err=="") { %>
-      <div class="form-design">
-              <form method="post">
-                  <h1>Log in</h1>
-                  <input type="text" placeholder="username"  name="username" >
-                   <input type="password"  placeholder="password"  name="password" >
-                    <input type="submit" value="Sign in" name="submit">
-              </form>
-          </div>
-  <% }else{ %>
+
     <div class="form-design">
             <form method="post">
                 <h1>Log in</h1>
                 <input type="text" placeholder="username"  name="username" >
+                <% if (error.username) { %>
+                <p><%= error.username.msg %></p>
+                <% } %>
                  <input type="password"  placeholder="password"  name="password" >
+                 <% if (error.password) { %>
+                 <p><%= error.password.msg %></p>
+                 <% } %>
         <input type="submit" value="Sign in" name="submit">
-        <span style="color: white;"><%= err %></span>
             </form>
         </div>
-        <% } %>
+
 
 </body>

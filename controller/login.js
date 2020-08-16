@@ -7,10 +7,10 @@ var err="";
 
 
 router.get('/',[check('username','username is required').isEmpty(),
-                check('password','Password is required').isEmpty()] ,
+                check('password','Password is requi').isEmpty()] ,
                 function(req,res){
                     var errors = validationResult(req);
-                    res.render('login/index',{error:errors.mapped(),err:err});
+                    res.render('login/index',{error:errors.mapped()});
 });
 
 router.post('/',[
@@ -28,7 +28,7 @@ var errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			console.log(errors.mapped());
       err="username/password cannot be empty"
-    	res.redirect('/login');
+    	res.render('login/index',{error:errors.mapped()});
 		}
 		else{
 

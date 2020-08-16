@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db 		= require.main.require('./models/db');
 var userModel = require.main.require('./models/user-models');
-const { check, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator/check');
 
 router.get('/',function(req,res){
   if(req.session.username== null){
