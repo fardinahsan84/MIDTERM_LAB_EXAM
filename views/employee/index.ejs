@@ -9,18 +9,35 @@
 <body>
   <h3><a href="/logout">Logout</a></h3>
     <form method="post">
+      <center>
         <fieldset>
-            <legend>Welcome to Employee page</legend>
+           <legend>Welcome to Employee page</legend>
+        					<h1>Welcome Home! <%= user.name %></h1>
+        					<h2>My Profile</h2>
             <table>
               <tr>
-                <td><input type="submit" name="choice" value="MyProfile"></td>
+                  <td>Id:</td><td><%= user.id %></td>
+              <tr>
+              <tr>
+                <td>Name:</td><td><%= user.name %></td>
               </tr>
               <tr>
-                <td><input type="submit" name="choice" value="UpdateProfile"></td>
+                <td>username:</td><td><%= user.username %></td>
+              </tr>
+              <tr>
+                <td>Phone:</td><td><%= user.phone %></td>
+              </tr>
+
+              <tr>
+                <td><input type="submit" name="choice" value="Add new Product"></td>
+              </tr>
+              <tr>
+                <td><input type="submit" name="choice" value="All Products"></td>
               </tr>
               <tr>
               </tr>
             </table>
         </fieldset>
+        </center>
     </form>
 </body>

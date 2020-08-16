@@ -92,6 +92,32 @@ module.exports ={
 				callback([]);
 			}
 		});
+	},
+
+  ///products models
+  insertProduct: function(product, callback){
+		var sql = "insert into products values('', '"+product.name+"', '"+product.quantity+"', '"+product.price+"')";
+
+		console.log(sql);
+
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	},
+
+  getAllProduct: function(callback){
+		var sql = "select * from products ";
+		db.getResults(sql, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback([]);
+			}
+		});
 	}
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee List page</title>
+
+	<style>
+			h3 {text-align: right;}
+	</style>
+
+</head>
+<body>
+	<form  method ="post" >
+	<center>
+	<h1>All products</h1>
+	<h3><a href="/employee">Back</a>|<a href="/logout">Logout</a></h3>
+
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>PHONE</th>
+      <th>Actions</th>
+
+		</tr>
+
+		<% for(var i=0; i < productList.length; i++){ %>
+		<tr>
+			<td><%= productList[i].id %></td>
+			<td><%= productList[i].name %></td>
+      <td><%= productList[i].quantity %></td>
+      <td><%= productList[i].price %></td>
+			<td><a href="/employee/update/<%= productList[i].id %>">EDIT</a> |
+				  <a href="/emloyee/delete/<%= productList[i].id %>"> DELETE </a></td>
+		</tr>
+		<% } %>
+    <tr>
+
+    </tr>
+	</table>
+  </center>
+ </form>
+</body>
+</html>

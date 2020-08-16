@@ -1,0 +1,49 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Update page</title>
+      <style>
+      table.center {
+            margin-left: auto;
+            margin-right: auto;
+          }
+      </style>
+  </head>
+  <body>
+    <form method="post">
+      <fieldset>
+        <legend>Update product</legend>
+        <table class="center">
+          <tr>
+            <td>Product ID </td>
+            <td>:<%= user.id %></td>
+          </tr>
+          <tr>
+            <td>Product name </td>
+            <td>:<%= user.name %></td>
+          </tr>
+          <tr>
+            <td>Product Quantity</td>
+            <td><input type="text" value="<%= user.quantity %>" required="required" name="quantity"  id="quantity"></td>
+          </tr>
+          <tr>
+            <td>Product price</td>
+            <td><input type="price" value="<%= user.price %>" required="required" name="price"  id="price"></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td><button type="submit" name"choice" value="Update" class="btn btn-primary">Update</button></td>
+          </tr>
+        </table>
+    </fieldset>
+  </form>
+  <table class="center">
+      <tr>
+        <td><a href="/employee/allProduct">Back</a>|
+      	<a href="/logout">Logout</a></td>
+      </tr>
+  </table>
+</body>
+</html>
