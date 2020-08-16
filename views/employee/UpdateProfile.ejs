@@ -1,0 +1,63 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+
+
+      <title>Update profile</title>
+      <style>
+      table.center {
+            margin-left: auto;
+            margin-right: auto;
+          }
+      </style>
+  </head>
+  <body>
+    <form method="post" action="/employee/UpdateProfile/<%= user.id %>" enctype="multipart/form-data">
+      <fieldset>
+        <legend>Edit My profile</legend>
+        <table class="center">
+          <tr>
+            <td>Name</td>
+            <td>:<%= user.name %></td>
+          </tr>
+          <tr>
+            <td> ID </td>
+            <td>:<%= user.id %></td>
+          </tr>
+          <tr>
+            <td> User Type </td>
+            <td>:<%= user.userType %></td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input type="password" value="<%= user.password %>" required="required" name="password"  id="password"></td>
+          </tr>
+
+          <tr>
+            <td>Phone no</td>
+            <td><input type="text" value="<%= user.phone %>" required="required" name="phone"  id="phone"></td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><input type="text" value="<%= user.address %>" required="required" name="address"  id="address"></td>
+          </tr>
+          <tr>
+            <td>Upload an image</td>
+            <td><input type="file" name="uploaded_image" accept="/"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button type="submit" name"choice" value="Update" class="btn btn-primary">Update</button></td>
+          </tr>
+        </table>
+    </fieldset>
+  </form>
+  <table class="center">
+      <tr>
+        <td><a href="/employee">Back</a>|
+      	<a href="/logout">Logout</a></td>
+      </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home page</title>
+	<style>
+	table.center {
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+
+
+	</style>
+
+</head>
+<body>
+
+
+	<center>
+
+					<h1>Welcome Home! <%= userlist.name %></h1>
+					<h2>My Profile</h2>
+</center>
+
+	<fieldset>
+
+		<table class="center">
+			<tr>
+        <td><img alt="User Pic" src="http://localhost:58822/images/upload_images/<%= userlist.image%>" width="230" height="200" class="img-circle img-responsive"></td>
+				<td><pre>
+	 ID	 : <%= userlist.id %><br>
+	 Name	 : <%= userlist.name %><br>
+	 Gender  : <%= userlist.gender %><br>
+	 Phone   : <%= userlist.phone %><br>
+	 Address : <%= userlist.address %><br>
+			</tr>
+			<tr>
+				<td></td>
+				<h3><td><a href="/employee">Back</a></td><td>|</td><td> <a href="/logout">Logout</a></td></h3>
+			</tr>
+		</table>
+	</fieldset>
+
+
+</body>
+</html>

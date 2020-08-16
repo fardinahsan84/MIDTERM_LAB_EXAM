@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form method="post">
+      <center>
+        <fieldset>
+            <legend>Delete Employee</legend>
+            <table>
+              <tr>
+                <td>Employee name: </td>
+                <td><%= user.name %></td>
+              </tr>
+              <tr>
+                <td>Employee Phone:</td>
+                <td><%= user.phone %></td>
+              </tr>
+              <tr>
+                <td>User Type</td>
+                <td><%= user.userType %></td>
+              </tr>
+              <tr>
+                <td><h3>Are you sure you want to delete?</h3></td>
+              </tr>
+              <tr>
+                <td><input type="submit" name="choice" value="No"></td>
+                <td><input type="submit" name="choice" value="Yes"></td>
+                <td><input type="hidden" name="id" value="<%= user.id %>"></td>
+              </tr>
+            </table>
+        </fieldset>
+        <table>
+          <tr>
+            <td><a href="/admin/AllEmployeeList">Back</a></td><td>|</td>
+                 <td><a href="/logout">Logout</a></td>
+          </tr>
+        </table>
+      </center>
+    </form>
+</body>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" >
+    <title>Login Page</title>
+    <style>
+    table.center {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        	*{
+        		margin: 0;
+        		padding: 0;
+        	}
+        	body{
+        	margin: 0;
+        	padding: 0;
+        	font-family: sans-serif;
+        	background: url(img1.jpg) no-repeat;
+        	background-size: cover;
+        	}
+        	.header1{
+        				padding-left: 540px;
+        				padding-top: 70px;
+        			}
+        	.form-design{
+        		width: 320px; background: #3e3d3d;
+        		padding: 40px 20px;
+        		box-sizing: border-box;
+        		position: fixed;
+        		left: 50%;
+        		top: 50%;
+        		transform: translate(-50%, -50%);
+        	}
+        	h1{
+        		text-align: center;
+        		color: #fff;
+        		font-weight: normal;
+        		margin-bottom: 20px;
+        	}
+
+        input{
+        	width: 100%;
+        	background: none;
+        	border: 1px solid #fff;
+        	border-radius: 3px; padding: 6px 15px;
+        	box-sizing: border-box;
+        	margin-bottom: 20px;
+        	font-size: 16px;
+        	color: #fff;
+        }
+
+        input[type="submit"]{
+        	background: #bac675;
+        	border: 0;
+        	cursor: pointer;
+        	color: #3e3d3d;
+        }
+        input[type="submit"]:hover{
+        	background: #a4b15c;
+        	transition: .6s;
+        }
+
+        ::placeholder{
+        	color: #fff;
+        }
+        p{
+        	color: white;
+        	font-size: 12px;
+        }
+        p a{
+        	color: white;
+        }
+        a{
+        	padding-left: 80px ;
+        	color: #586124;
+        }
+    </style>
+</head>
+<body>
+  <% if (err!="") { %>
+      <div class="form-design">
+              <form method="post">
+                  <h1>Log in</h1>
+                  <input type="text" placeholder="username"  name="username" >
+                   <input type="password"  placeholder="password"  name="password" >
+                    <input type="submit" value="Sign in" name="submit">
+                    <span style="color: white;"><%= err %></span>
+              </form>
+          </div>
+  <% }else{ %>
+    <div class="form-design">
+            <form method="post">
+                <h1>Log in</h1>
+                <input type="text" placeholder="username"  name="username" >
+                 <input type="password"  placeholder="password"  name="password" >
+        <input type="submit" value="Sign in" name="submit">
+            </form>
+        </div>
+        <% } %>
+
+</body>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Result</title>
+
+	<style>
+			h3 {text-align: right;}
+	</style>
+</head>
+<body>
+	<center>
+	<h1>Search result </h1>
+	<h3><a href="/admin/AllEmployeeList">Back</a>|<a href="/logout">Logout</a></h3>
+
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>PHONE</th>
+
+
+		</tr>
+
+		<% for(var i=0; i < userList.length; i++){ %>
+		<tr>
+			<td><%= userList[i].id %></td>
+			<td><%= userList[i].name %></td>
+      <td><%= userList[i].phone %></td>
+
+      <td><a href="/admin/update/<%= userList[i].id %>">EDIT</a> |
+				  <a href="/admin/delete/<%= userList[i].id %>"> DELETE </a></td>
+		</tr>
+		<% } %>
+    <tr>
+
+    </tr>
+	</table>
+</center>
+</body>
+</html>

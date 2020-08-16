@@ -1,0 +1,52 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Update page</title>
+      <style>
+      table.center {
+            margin-left: auto;
+            margin-right: auto;
+          }
+      </style>
+  </head>
+  <body>
+    <form method="post">
+      <fieldset>
+        <legend>Update Employee profile</legend>
+        <table class="center">
+          <tr>
+            <td>Employee ID </td>
+            <td>:<%= user.id %></td>
+          </tr>
+          <tr>
+            <td>Employee name </td>
+            <td>:<%= user.name %></td>
+          </tr>
+          <tr>
+            <td>Employee Username</td>
+            <td><input type="text" value="<%= user.username %>" required="required" name="username"  id="phone"></td>
+          </tr>
+          <tr>
+            <td>Employee Password</td>
+            <td><input type="password" value="<%= user.password %>" required="required" name="password"  id="password"></td>
+          </tr>
+          <tr>
+            <td>Employee Phone</td>
+            <td><input type="text" value="<%= user.phone %>" required="required" name="phone"  id="phone"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button type="submit" name"choice" value="Update" class="btn btn-primary">Update</button></td>
+          </tr>
+        </table>
+    </fieldset>
+  </form>
+  <table class="center">
+      <tr>
+        <td><a href="/admin/AllEmployeeList">Back</a>|
+      	<a href="/logout">Logout</a></td>
+      </tr>
+  </table>
+</body>
+</html>
