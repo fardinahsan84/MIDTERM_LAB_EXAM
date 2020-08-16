@@ -121,7 +121,7 @@ module.exports ={
 	},
 
   updateProduct: function(product,callback){
-    var sql = "update products set quantity='"+product.quantity+"',price='"+product.price+"'  where id='"+product.id+"'";
+    var sql = "update products set name='"+product.name+"',quantity='"+product.quantity+"',price='"+product.price+"'  where id='"+product.id+"'";
     db.execute(sql, function(status){
       if(status){
         callback(true);

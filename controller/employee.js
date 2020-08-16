@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var userModel = require.main.require('./models/user-models');
 const { check, validationResult } = require('express-validator/check');
-
+var err =
+{
+	name: "",
+	quantity: "",
+	price: "",
+}
 
 router.get('/',function(req,res){
   if(req.session.username== null){
@@ -70,26 +75,65 @@ router.get('/allProduct',function(req,res){
 router.get('/update/:id', function(req, res){
 
 	userModel.getByIdProduct(req.params.id, function(result){
-		res.render('employee/update',{user : result});
+		res.render('employee/update',{user : result, err:err});
 	});
 });
 
 router.post('/update/:id', function(req, res){
 
   var product ={
+    name        :req.body.name,
     quantity 		: req.body.quantity,
-    price   	: req.body.price,
-    id        : req.params.id
+    price   	  : req.body.price,
+    id          : req.params.id
   }
 
-	userModel.updateProduct(product, function(status){
-		if(status){
-			res.redirect('/employee/allProduct');
+        	var er = false;
+        	if(product.name.length < 1)
+        	{
+        		//console.log("null");
+            		err.name="*required field";
+            		er = true;
+        	}
+        	else
+        	{
+        		    err.name="";
+        	}
+        	if(product.quantity < 0 || product.quantity.length < 1)
+        	{
+            		err.quantity="*required field";
+            		er = true;
+        	}
+        	else
+        	{
+        		    err.quantity="";
+        	}
+        	if(product.price < 0 || product.price.length < 1)
+        	{
+            		err.price="*required field";
+            		er = true;
+        	}
+        	else
+        	{
+        		    err.price="";
+        	}
 
-		}else{
-			res.redirect('/employee/update/'+req.params.id);
-		}
-	});
+        	if(!er)
+        	{
+            userModel.updateProduct(product, function(status){
+              if(status){
+                res.redirect('/employee/allProduct');
+
+              }else{
+                res.redirect('/employee/update/'+req.params.id);
+              }
+            });
+        	}
+        	else
+        	{
+        		    res.redirect('/employee/update/'+req.params.id);
+        	}
+
 });
 
 //DELETE

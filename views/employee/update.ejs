@@ -21,15 +21,18 @@
           </tr>
           <tr>
             <td>Product name </td>
-            <td>:<%= user.name %></td>
+            <td><input type="text" value="<%= user.name %>"  name="name" min="1" id="name"></td>
+            <td><span style="color: red;"><%= err.name %></span></td>
           </tr>
           <tr>
             <td>Product Quantity</td>
-            <td><input type="text" value="<%= user.quantity %>" required="required" name="quantity"  id="quantity"></td>
+            <td><input type="number" value="<%= user.quantity %>"  name="quantity" min="1" id="quantity">
+            <span style="color: red;"><%= err.quantity %></span></td>
           </tr>
           <tr>
             <td>Product price</td>
-            <td><input type="price" value="<%= user.price %>" required="required" name="price"  id="price"></td>
+            <td><input type="number" value="<%= user.price %>" name="price" min="1" id="price"></td>
+            <td><span style="color: red;"><%= err.price %></span></td>
           </tr>
 
           <tr>
