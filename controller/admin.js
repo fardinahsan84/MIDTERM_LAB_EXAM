@@ -33,30 +33,27 @@ router.post('/',function(req,res){
 
 //AllEmployeeList
 router.get('/AllEmployeeList', function(req, res){
-
-	userModel.getAllEmployee("employee",function(results){
-    console.log(results);
-		res.render('admin/AllEmployee', { userList : results, username: req.session.username});
-	});
+  var data = {
+        username: req.session.username
+    }
+    userModel.getAllEmployee("employee",function (result) {
+        data['userList'] = result;
+        //console.log();
+        res.render('admin/AllEmployee', data);
+    });
 });
 
 router.post('/AllEmployeeList', function(req, res){
-	var search = req.body.search;
-	if(search == ""){
-		res.redirect('/admin/AllEmployeeList');
-	}
-	else{
-				userModel.getSearchByID(search,"employee", function(results){
-          if(results.length > 0){
-				       res.render('admin/search',{userList: results});
-            }else{
-               console.log('Search not found');
-            }
-			});
-		}
-
-
+  console.log(req.body);
+  userModel.search(req.body.key,"employee", (result) => {
+      console.log('inside post');
+      console.log(result);
+      res.json({
+          userList: result
+      })
+  });
 });
+
 
 //AddEmployee
 router.get('/AddEmployee',function(req,res){
@@ -184,4 +181,13 @@ router.post('/delete/:id',function(req,res){
         }
 });
 
+router.post('/search', function (req, res) {
+    console.log(req.body);
+    userModel.search(req.body.key,"employee", (result) => {
+        console.log(result);
+        res.json({
+            userList: result
+        })
+    });
+});
 module.exports = router;

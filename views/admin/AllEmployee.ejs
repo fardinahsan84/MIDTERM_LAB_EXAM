@@ -1,56 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Employee List page</title>
-
-	<style>
-			h3 {text-align: right;}
-	</style>
-	<script>
-				function validateForm(){
-				var x = document.forms["searchForm"]["search"].value;
-				if (x == "") {
-							alert("Search field cannot be empty!!  Put an user ID or NAME !!!");
-							return false;
-				}
-				else{
-							return true;
-				}
-			}
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/jquery.min.js"></script>
+    <title>Admin</title>
 </head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    h3 {text-align: right;}
+</style>
+
 <body>
-	<form name="searchForm" onsubmit="return validateForm()" method ="post" required>
-	<center>
-	<h1>All Employee List </h1>
-	<h3><a href="/admin">Back</a>|<a href="/logout">Logout</a></h3>
-	<table>
-		<tr>
-			<td><input type="text" placeholder="type id/name.." name="search" ></td> <td></td> <td><input type="submit" name="choice" value="Search"></td>
-			</tr>
-	</table>
-	<table border="1">
-		<tr>
-			<th>ID</th>
-			<th>NAME</th>
-			<th>PHONE</th>
 
-		</tr>
-
-		<% for(var i=0; i < userList.length; i++){ %>
-		<tr>
-			<td><%= userList[i].id %></td>
-			<td><%= userList[i].name %></td>
-      <td><%= userList[i].phone %></td>
-			<td><a href="/admin/update/<%= userList[i].id %>">EDIT</a> |
-				  <a href="/admin/delete/<%= userList[i].id %>"> DELETE </a></td>
-		</tr>
-		<% } %>
-    <tr>
-
-    </tr>
-	</table>
+    <div>
+        <center><h1>Welcome to employee page "<%=username %>"</h1><h3><a href="/admin">Back</a>|<a href="/logout">Logout</a></h3></center>
+    </div>
+    <br>
+    <br>
+    <div><center>
+        <a href="/admin/AddEmployee">Add Employee</a>
+        <br>
+        <a href="/admin/AllEmployeeList">ALLEmpList</a></center>
+    </div>
+    <br>
+    <br>
+    <center>
+      <div>
+          <table style="width: 600px;" >
+            <tr>
+              <td>SEARCH </td>
+              <td><input type="text" name="sbox" placeholder="type id/name here..." id="sbox"></td>
+            </tr>
+          </table>
+        </div>
   </center>
- </form>
+    <br>
+    <br>
+  <center>
+    <div>
+      <table style="width: 600px;" id="list">
+        <tr><td>
+						<% for(var i=0; i<userList.length; i++) { %>
+                    <fieldset>
+                <table  style="width: 600px;" >
+									<tr>
+											<td>Id</td>
+											<td><%= userList[i].id %></td>
+									</tr>
+									<tr>
+											<td>Name</td>
+											<td><%= userList[i].name %></td>
+									</tr>
+									<tr>
+											<td>username</td>
+											<td><%= userList[i].username %></td>
+									</tr>
+									<tr>
+											<td>password</td>
+											<td><%= userList[i].password %></td>
+									</tr>
+									<tr>
+											<td>Phone</td>
+											<td><%= userList[i].phone %></td>
+									</tr>
+									<tr>
+											<td><a href="/admin/update/<%= userList[i].id %>">EDIT</a></td>
+											<td><a href="/admin/delete/<%= userList[i].id %>"> DELETE </a></td>
+									</tr
+                </table>
+              </fieldset>
+							<% } %>
+            </td></tr>
+          </table>
+  </div>
+  </center>
+<script>
+$('#sbox').keyup(function () {
+				console.log($(this).val());
+				$.ajax({
+						url: '/admin/AllEmployeeList',
+						method: 'POST',
+						dataType: 'JSON',
+						data: {
+								key: $(this).val(),
+						},
+						success: function (data) {
+								if ('userList' in data) {
+										let htx = '';
+										for (let i = 0; i < data.userList.length; i++) {
+												htx += "<tr><td>ID</td><td>" + data.userList[i].id + "</td></tr>";
+												htx += "<tr><td>NAME</td><td>" + data.userList[i].name + "</td></tr>";
+												htx += "<tr><td>Username</td><td>" + data.userList[i].username + "</td></tr>";
+												htx += "<tr><td>Password</td><td>" + data.userList[i].password + "</td></tr>";
+												htx += "<tr><td>PHONE</td><td>" + data.userList[i].phone + "</td></tr>";
+												htx += "<tr><td><a href='/admin/update/" + data.userList[i].id + "'>Update</a></td>";
+												htx += "<td><a href='/admin/delete/" + data.userList[i].id + "'>Delete</a></td></tr>";
+										}
+										$('#list').html(htx);
+								}
+						},
+				});
+		});
+</script>
 </body>
 </html>

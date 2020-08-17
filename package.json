@@ -23,6 +23,7 @@
     "express-session": "^1.17.1",
     "express-validation": "^3.0.5",
     "express-validator": "^6.6.1",
+    "jquery": "^3.5.1",
     "mysql": "^2.18.1"
   }
 }

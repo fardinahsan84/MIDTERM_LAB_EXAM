@@ -93,6 +93,21 @@ module.exports ={
 			}
 		});
 	},
+  search : function(key, userType,callback){
+    key = '%' + key + '%';
+    var sql="select users.id, users.name,users.username, users.password, users.phone FROM users where users.id like ? or users.Name like ? or users.username like ? and users.userType= ?";
+    //var sql = "select id , name , username from users where (id= ? or name =? or username = ?) and userType = ?"
+    db.getResult(sql,[key,key,key,userType], function(results){
+      if(results.length > 0 ) {
+        //console.log(results);
+        console.log('inside getResult');
+        callback(results);
+      }else{
+        console.log('nothing');
+        callback([]);
+      }
+    });
+  },
 
   ///products models
   insertProduct: function(product, callback){

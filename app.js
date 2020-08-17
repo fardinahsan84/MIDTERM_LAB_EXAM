@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 //middleware
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static('./node_modules/jquery/dist/'));
 app.use(exSession({secret: 'my secret value', saveUnitialized: true,resave: false}));
 //var urlencodedParser = bodyParser.urlencoded({ extended: false })
 

@@ -39,6 +39,36 @@ module.exports = {
 			});
 		});
 	},
+	getResult: function (sql, params, callback) {
+		getConnection(function (connection) {
+
+			if (params != null) {
+				connection.query(sql, params, function (error, results) {
+					if (error) {
+						console.log(error.stack);
+						callback([]);
+					} else {
+						callback(results);
+					}
+				});
+
+			} else {
+
+				connection.query(sql, function (error, results) {
+					if (error) {
+						console.log(error.stack);
+						callback([]);
+					} else {
+						callback(results);
+					}
+				});
+			}
+
+			connection.end(function (err) {
+				console.log('connection end...');
+			});
+		});
+	},
 	execute: function (sql, callback){
 
 		getConnection(function(connection){
